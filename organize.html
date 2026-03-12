@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Organize on TarkwaTix</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        darkBg: '#0f172a',
+                        cardBg: '#1e293b',
+                        neonBlue: '#0ea5e9',
+                        neonPurple: '#a855f7',
+                    },
+                    fontFamily: {
+                        sans: ['Outfit', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @keyframes scan {
+            0% { top: 0%; opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { top: 100%; opacity: 0; }
+        }
+    </style>
+</head>
+<body class="bg-darkBg text-white font-sans antialiased overflow-x-hidden flex flex-col min-h-screen">
+
+    <!-- Navbar -->
+    <nav class="w-full z-50 px-6 py-6 flex justify-between items-center bg-[#0b1121] border-b border-white/5">
+        <a href="index.html" class="text-2xl font-extrabold tracking-tighter text-white hover:opacity-80 transition cursor-pointer">
+            Tarkwa<span class="text-neonBlue">Tix</span>
+        </a>
+        <div class="hidden md:flex space-x-6 text-sm font-semibold">
+            <a href="events.html" class="hover:text-neonBlue transition cursor-pointer">Events</a>
+            <a href="organize.html" class="text-neonPurple transition cursor-pointer">Organize</a>
+            <a href="contact.html" class="hover:text-white transition cursor-pointer text-gray-400">Contact Us</a>
+        </div>
+    </nav>
+
+    <!-- Organizer Tools Section -->
+    <section class="py-16 px-6 bg-slate-900/50 flex-grow relative overflow-hidden">
+        <div class="absolute top-0 right-0 w-96 h-96 bg-neonPurple/10 rounded-full blur-[100px] -z-10"></div>
+        <div class="absolute bottom-0 left-0 w-96 h-96 bg-neonBlue/10 rounded-full blur-[100px] -z-10"></div>
+        
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-extrabold mb-4">Built for <span class="text-transparent bg-clip-text bg-gradient-to-r from-neonBlue to-neonPurple">Culture Creators</span></h2>
+                <p class="text-xl text-gray-400 max-w-2xl mx-auto">Everything you need to hype, manage, and cash out your events seamlessly.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- AI Flyer Gen Card -->
+                <div class="p-8 bg-darkBg rounded-2xl border border-white/5 hover:border-neonPurple hover:-translate-y-2 transition duration-300 cursor-pointer group" onclick="openFlyerModal()">
+                    <div class="w-16 h-16 rounded-full bg-neonPurple/20 group-hover:bg-neonPurple/40 flex items-center justify-center text-neonPurple mb-6 mx-auto transition">
+                        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"></path></svg>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 group-hover:text-neonPurple transition text-center">Automated Flyer Generation</h3>
+                    <p class="text-gray-400 text-sm text-center">Need a flyer? Use our AI tools to instantly generate a stunning aesthetic to match your vibe. <span class="text-neonPurple block mt-2 font-semibold">Try it out &rarr;</span></p>
+                </div>
+                
+                <!-- RSVP Tracker Card -->
+                <div class="p-8 bg-darkBg rounded-2xl border border-white/5 hover:border-neonBlue hover:-translate-y-2 transition duration-300 cursor-pointer group" onclick="openRsvpModal()">
+                    <div class="w-16 h-16 rounded-full bg-neonBlue/20 group-hover:bg-neonBlue/40 flex items-center justify-center text-neonBlue mb-6 mx-auto transition">
+                        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 group-hover:text-neonBlue transition text-center">Easy RSVP Tracking</h3>
+                    <p class="text-gray-400 text-sm text-center">No more Excel sheets. Scan QR codes at the door and track attendance in real-time right from your phone. <span class="text-neonBlue block mt-2 font-semibold">Try it out &rarr;</span></p>
+                </div>
+
+                <!-- Instant Payouts Card -->
+                <div class="p-8 bg-darkBg rounded-2xl border border-white/5 hover:border-green-500 hover:-translate-y-2 transition duration-300 cursor-pointer group" onclick="openPayoutModal()">
+                    <div class="w-16 h-16 rounded-full bg-green-500/20 group-hover:bg-green-500/40 flex items-center justify-center text-green-400 mb-6 mx-auto transition">
+                        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 group-hover:text-green-400 transition text-center">Instant Payouts</h3>
+                    <p class="text-gray-400 text-sm text-center">Receive your ticket sales directly to your Mobile Money (MoMo) account the moment the event ends. <span class="text-green-400 block mt-2 font-semibold">Try it out &rarr;</span></p>
+                </div>
+            </div>
+            
+            <div class="mt-16 text-center">
+                 <a href="#" class="inline-block px-10 py-4 bg-white text-darkBg font-bold rounded-full hover:bg-gray-200 transition shadow-lg mb-12">
+                    Start Organizing Now
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-[#0b1121] py-8 border-t border-white/10 mt-auto">
+        <div class="max-w-7xl mx-auto px-6 text-center">
+            <div class="flex flex-col md:flex-row justify-between items-center text-sm text-gray-500">
+                <p>&copy; 2026 TarkwaTix. All rights reserved.</p>
+                <div class="flex space-x-6 mt-4 md:mt-0">
+                    <a href="#" class="hover:text-white transition">About</a>
+                    <a href="#" class="hover:text-white transition">Terms of Service</a>
+                    <a href="#" class="hover:text-white transition">Privacy Policy</a>
+                    <a href="contact.html" class="hover:text-white transition">Contact</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Modals -->
+
+    <!-- AI Flyer Generation Modal -->
+    <div id="flyerModal" class="fixed inset-0 z-[100] bg-black/80 backdrop-blur-sm hidden flex items-center justify-center px-4">
+        <!-- Content Remains the same -->
+        <div class="bg-cardBg border border-white/10 p-8 rounded-2xl w-full max-w-lg relative shadow-2xl transition-all">
+            <!-- Close Button -->
+            <button onclick="closeFlyerModal()" class="absolute top-4 right-4 text-gray-400 hover:text-white">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+            </button>
+            
+            <h3 class="text-2xl font-bold mb-2 flex items-center">
+                <span class="text-neonPurple mr-2">✦</span> AI Flyer Studio
+            </h3>
+            <p class="text-gray-400 text-sm mb-6">Describe your event vibe and let our AI create a custom flyer for you in seconds.</p>
+            
+            <div id="aiInputState">
+                <textarea id="aiPrompt" rows="3" class="w-full bg-darkBg border border-gray-600 rounded-xl p-4 text-white focus:outline-none focus:border-neonPurple focus:ring-1 focus:ring-neonPurple transition mb-4 resize-none" placeholder="E.g. A neon-lit pool party in Tarkwa with vibrant summer colors, starting at 10 PM..."></textarea>
+                
+                <button onclick="generateFlyer()" class="w-full bg-neonPurple text-white font-bold py-3 rounded-xl hover:bg-purple-500 transition shadow-[0_0_15px_rgba(168,85,247,0.4)]">
+                    Generate Magic
+                </button>
+            </div>
+
+            <!-- Loading State -->
+            <div id="aiLoadingState" class="hidden flex-col items-center py-10">
+                <div class="w-12 h-12 border-4 border-darkBg border-t-neonPurple rounded-full animate-spin mb-4"></div>
+                <p class="text-neonPurple font-semibold animate-pulse">Consulting the creative matrix...</p>
+            </div>
+
+            <!-- Result State -->
+            <div id="aiResultState" class="hidden flex-col">
+                <div class="w-full h-64 bg-black rounded-xl overflow-hidden mb-4 border border-white/5">
+                    <img id="generatedImage" src="file:///C:/Users/HP/.gemini/antigravity/brain/0245b52c-4975-45ac-9aed-9929eef1d290/house_party_1773351367423.png" alt="Generated Flyer" class="w-full h-full object-contain">
+                </div>
+                <div class="flex space-x-4">
+                    <button onclick="resetFlyerGenerator()" class="flex-1 bg-darkBg text-gray-300 font-bold py-3 rounded-xl border border-gray-600 hover:text-white hover:border-white transition">Regenerate</button>
+                    <button onclick="closeFlyerModal()" class="flex-1 bg-neonBlue text-white font-bold py-3 rounded-xl hover:bg-blue-500 transition shadow-[0_0_15px_rgba(14,165,233,0.4)]">Use this Flyer</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- RSVP Tracker Modal -->
+    <div id="rsvpModal" class="fixed inset-0 z-[100] bg-black/80 backdrop-blur-sm hidden flex items-center justify-center px-4">
+        <div class="bg-cardBg border border-white/10 p-8 rounded-2xl w-full max-w-lg relative shadow-2xl transition-all">
+            <!-- Close Button -->
+            <button onclick="closeRsvpModal()" class="absolute top-4 right-4 text-gray-400 hover:text-white">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+            </button>
+            
+            <h3 class="text-2xl font-bold mb-2 flex items-center">
+                <span class="text-neonBlue mr-2">✦</span> Live RSVP Dashboard
+            </h3>
+            <p class="text-gray-400 text-sm mb-6">Simulate scanning a ticket at the door to see real-time analytics update instantly.</p>
+            
+            <div class="grid grid-cols-2 gap-4 mb-6 text-center">
+                <div class="bg-darkBg p-4 rounded-xl border border-white/5">
+                    <p class="text-sm text-gray-400">Total Sold</p>
+                    <p class="text-2xl font-extrabold text-white">150</p>
+                </div>
+                <div class="bg-darkBg p-4 rounded-xl border border-white/5">
+                    <p class="text-sm text-gray-400">Total Checked In</p>
+                    <p class="text-2xl font-extrabold text-neonBlue" id="checkedInCount">87</p>
+                </div>
+            </div>
+
+            <div class="w-full bg-darkBg/50 border border-gray-700 rounded-xl p-6 flex flex-col items-center justify-center mb-6 relative overflow-hidden" id="scannerArea">
+                <!-- Scanning Line Animation -->
+                <div id="scanLine" class="hidden absolute top-0 left-0 w-full h-1 bg-neonBlue glow-shadow animate-[scan_1.5s_ease-in-out_infinite]"></div>
+                
+                <svg class="w-16 h-16 text-gray-500 mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 4v1m6 11h2m-6 0h-2v4m0-11v3m0 0h.01M12 12h4.01M16 20h4M4 12h4m12 0h.01M5 8h2a1 1 0 001-1V5a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1zm14 0h2a1 1 0 001-1V5a1 1 0 00-1-1h-2a1 1 0 00-1 1v2a1 1 0 001 1zM5 20h2a1 1 0 001-1v-2a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1z"></path></svg>
+                <p class="text-gray-300 font-semibold mb-1" id="scanPromptText">Ready to scan tickets.</p>
+            </div>
+            
+            <button onclick="simulateTicketScan()" class="w-full bg-neonBlue text-white font-bold py-3 rounded-xl hover:bg-blue-500 transition shadow-[0_0_15px_rgba(14,165,233,0.4)]" id="scanBtn">
+                Simulate QR Scan
+            </button>
+            
+            <div id="scanOverlay" class="hidden absolute bottom-24 left-1/2 -translate-x-1/2 bg-green-500/20 border border-green-500 text-green-400 font-bold px-4 py-2 rounded-lg backdrop-blur-md items-center">
+                <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                Ticket Valid! Check-in +1
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Instant Payouts Modal -->
+    <div id="payoutModal" class="fixed inset-0 z-[100] bg-black/80 backdrop-blur-sm hidden flex items-center justify-center px-4">
+        <div class="bg-cardBg border border-white/10 p-8 rounded-2xl w-full max-w-sm relative shadow-2xl transition-all">
+            <!-- Close Button -->
+            <button onclick="closePayoutModal()" class="absolute top-4 right-4 text-gray-400 hover:text-white">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+            </button>
+            
+            <div class="text-center mb-6">
+                <div class="w-16 h-16 rounded-full bg-green-500/20 flex flex-col items-center justify-center text-green-400 mb-4 mx-auto">
+                    <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                </div>
+                <h3 class="text-2xl font-bold mb-1">Available Balance</h3>
+                <p class="text-sm text-gray-400">Total earnings from "House Party"</p>
+            </div>
+            
+            <!-- Balance Display -->
+            <div id="payoutBalanceArea" class="bg-darkBg p-6 rounded-xl border border-white/5 text-center mb-6">
+                <p class="text-4xl font-extrabold text-white mb-2" id="availableBalanceAmount">GHS 4,500.00</p>
+                <div class="flex items-center justify-center text-sm text-gray-400">
+                    <svg class="w-4 h-4 mr-1 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                    Ready for withdrawal
+                </div>
+            </div>
+
+            <!-- Processing State -->
+            <div id="payoutProcessingArea" class="hidden flex-col items-center justify-center py-6 mb-2">
+                <div class="w-12 h-12 border-4 border-darkBg border-t-green-500 rounded-full animate-spin mb-4"></div>
+                <p class="text-green-500 font-semibold animate-pulse">Contacting MTN Mobile Money...</p>
+            </div>
+
+            <!-- Success State -->
+            <div id="payoutSuccessArea" class="hidden flex-col items-center justify-center py-4 mb-2">
+                <div class="w-16 h-16 bg-green-500 text-white rounded-full flex items-center justify-center mb-4 shadow-[0_0_20px_rgba(34,197,94,0.5)]">
+                    <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
+                </div>
+                <p class="text-xl font-bold text-white mb-1">Cashed Out!</p>
+                <p class="text-sm text-gray-400 text-center">GHS 4,500.00 has been sent to your registered MoMo number.</p>
+            </div>
+
+            <button onclick="simulatePayout()" class="w-full bg-green-600 text-white font-bold py-3 rounded-xl hover:bg-green-500 transition shadow-[0_0_15px_rgba(34,197,94,0.4)]" id="withdrawBtn">
+                Withdraw to MoMo
+            </button>
+            
+        </div>
+    </div>
+
+
+    <script>
+        // --- AI Flyer State ---
+        const flyerModal = document.getElementById('flyerModal');
+        const inputState = document.getElementById('aiInputState');
+        const loadingState = document.getElementById('aiLoadingState');
+        const resultState = document.getElementById('aiResultState');
+        const promptInput = document.getElementById('aiPrompt');
+
+        function openFlyerModal() {
+            flyerModal.classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeFlyerModal() {
+            flyerModal.classList.add('hidden');
+            document.body.style.overflow = 'auto';
+            resetFlyerGenerator();
+        }
+
+        function generateFlyer() {
+            if(!promptInput.value.trim()) {
+                promptInput.classList.add('border-red-500');
+                return;
+            }
+            promptInput.classList.remove('border-red-500');
+            
+            inputState.classList.add('hidden');
+            loadingState.classList.remove('hidden');
+            loadingState.classList.add('flex');
+
+            setTimeout(() => {
+                loadingState.classList.add('hidden');
+                loadingState.classList.remove('flex');
+                
+                resultState.classList.remove('hidden');
+                resultState.classList.add('flex');
+            }, 3000);
+        }
+
+        function resetFlyerGenerator() {
+            promptInput.value = '';
+            inputState.classList.remove('hidden');
+            
+            loadingState.classList.add('hidden');
+            loadingState.classList.remove('flex');
+            
+            resultState.classList.add('hidden');
+            resultState.classList.remove('flex');
+        }
+
+        flyerModal.addEventListener('click', (e) => {
+            if (e.target === flyerModal) {
+                closeFlyerModal();
+            }
+        });
+
+        // --- RSVP Tracker State ---
+        const rsvpModal = document.getElementById('rsvpModal');
+        const scanLine = document.getElementById('scanLine');
+        const checkedInCountEl = document.getElementById('checkedInCount');
+        const scanPromptText = document.getElementById('scanPromptText');
+        const scanOverlay = document.getElementById('scanOverlay');
+        const scanBtn = document.getElementById('scanBtn');
+        let currentCheckedIn = 87;
+
+        function openRsvpModal() {
+            rsvpModal.classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeRsvpModal() {
+            rsvpModal.classList.add('hidden');
+            document.body.style.overflow = 'auto';
+        }
+
+        function simulateTicketScan() {
+            // Disable button during scan
+            scanBtn.disabled = true;
+            scanBtn.classList.add('opacity-50');
+            
+            // Show scanning animation
+            scanLine.classList.remove('hidden');
+            scanPromptText.innerText = "Scanning QR Code...";
+
+            // Simulate server validation delay
+            setTimeout(() => {
+                // Success State
+                scanLine.classList.add('hidden');
+                scanPromptText.innerText = "Ready to scan tickets.";
+                currentCheckedIn++;
+                checkedInCountEl.innerText = currentCheckedIn;
+
+                // Animate check-in number bump
+                checkedInCountEl.classList.add('scale-125', 'transition-transform', 'duration-300');
+                setTimeout(() => checkedInCountEl.classList.remove('scale-125'), 300);
+
+                // Show success popover
+                scanOverlay.classList.remove('hidden');
+                scanOverlay.classList.add('flex');
+                
+                // Reset button & hide overlay
+                setTimeout(() => {
+                    scanOverlay.classList.add('hidden');
+                    scanOverlay.classList.remove('flex');
+                    scanBtn.disabled = false;
+                    scanBtn.classList.remove('opacity-50');
+                }, 2000);
+                
+            }, 1000);
+        }
+
+        rsvpModal.addEventListener('click', (e) => {
+            if (e.target === rsvpModal) {
+                closeRsvpModal();
+            }
+        });
+
+        // --- Instant Payouts State ---
+        const payoutModal = document.getElementById('payoutModal');
+        const payoutBalanceArea = document.getElementById('payoutBalanceArea');
+        const payoutProcessingArea = document.getElementById('payoutProcessingArea');
+        const payoutSuccessArea = document.getElementById('payoutSuccessArea');
+        const withdrawBtn = document.getElementById('withdrawBtn');
+        const availableBalanceAmount = document.getElementById('availableBalanceAmount');
+
+        function openPayoutModal() {
+            payoutModal.classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+            resetPayoutState();
+        }
+
+        function closePayoutModal() {
+            payoutModal.classList.add('hidden');
+            document.body.style.overflow = 'auto';
+        }
+
+        function simulatePayout() {
+            if(withdrawBtn.innerText === "Close") {
+                closePayoutModal();
+                return;
+            }
+
+            // Hide balance, show processing
+            payoutBalanceArea.classList.add('hidden');
+            payoutProcessingArea.classList.remove('hidden');
+            payoutProcessingArea.classList.add('flex');
+            
+            withdrawBtn.disabled = true;
+            withdrawBtn.classList.add('opacity-50');
+            withdrawBtn.innerText = "Processing...";
+
+            // Simulate network delay for MoMo transfer
+            setTimeout(() => {
+                payoutProcessingArea.classList.add('hidden');
+                payoutProcessingArea.classList.remove('flex');
+                
+                payoutSuccessArea.classList.remove('hidden');
+                payoutSuccessArea.classList.add('flex');
+
+                availableBalanceAmount.innerText = "GHS 0.00";
+                
+                withdrawBtn.disabled = false;
+                withdrawBtn.classList.remove('opacity-50');
+                withdrawBtn.innerText = "Close";
+                withdrawBtn.classList.remove('bg-green-600', 'hover:bg-green-500');
+                withdrawBtn.classList.add('bg-gray-700', 'hover:bg-gray-600');
+            }, 2500);
+        }
+
+        function resetPayoutState() {
+            payoutBalanceArea.classList.remove('hidden');
+            
+            payoutProcessingArea.classList.add('hidden');
+            payoutProcessingArea.classList.remove('flex');
+            
+            payoutSuccessArea.classList.add('hidden');
+            payoutSuccessArea.classList.remove('flex');
+            
+            withdrawBtn.disabled = false;
+            withdrawBtn.classList.remove('opacity-50');
+            withdrawBtn.innerText = "Withdraw to MoMo";
+            withdrawBtn.classList.add('bg-green-600', 'hover:bg-green-500');
+            withdrawBtn.classList.remove('bg-gray-700', 'hover:bg-gray-600');
+            // reset balance for demo purposes
+            if(availableBalanceAmount.innerText === "GHS 0.00") {
+                availableBalanceAmount.innerText = "GHS 4,500.00";
+            }
+        }
+
+        payoutModal.addEventListener('click', (e) => {
+            if (e.target === payoutModal) {
+                closePayoutModal();
+            }
+        });
+
+    </script>
+</body>
+</html>

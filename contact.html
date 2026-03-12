@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us | TarkwaTix</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        darkBg: '#0f172a',
+                        cardBg: '#1e293b',
+                        neonBlue: '#0ea5e9',
+                        neonPurple: '#a855f7',
+                    },
+                    fontFamily: {
+                        sans: ['Outfit', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-darkBg text-white font-sans antialiased overflow-x-hidden flex flex-col min-h-screen">
+
+    <!-- Navbar -->
+    <nav class="w-full z-50 px-6 py-6 flex justify-between items-center bg-[#0b1121] border-b border-white/5">
+        <a href="index.html" class="text-2xl font-extrabold tracking-tighter text-white hover:opacity-80 transition cursor-pointer">
+            Tarkwa<span class="text-neonBlue">Tix</span>
+        </a>
+        <div class="hidden md:flex space-x-6 text-sm font-semibold">
+            <a href="events.html" class="hover:text-neonBlue transition cursor-pointer">Events</a>
+            <a href="organize.html" class="hover:text-neonPurple transition cursor-pointer">Organize</a>
+            <a href="contact.html" class="text-white transition cursor-pointer">Contact Us</a>
+        </div>
+    </nav>
+
+    <!-- Contact Section -->
+    <section class="py-24 px-6 flex-grow flex items-center justify-center">
+        <div class="max-w-4xl w-full text-center">
+            <h2 class="text-4xl md:text-5xl font-extrabold mb-4">Get in Touch</h2>
+            <p class="text-xl text-gray-400 mb-16">Have an issue with your ticket or want to host a massive event? We're here to help.</p>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-2xl mx-auto">
+                <div class="bg-cardBg border border-white/5 p-8 rounded-2xl shadow-xl hover:-translate-y-2 transition duration-300 group">
+                    <div class="w-16 h-16 rounded-full bg-neonBlue/20 group-hover:bg-neonBlue/40 flex items-center justify-center text-neonBlue mb-6 mx-auto transition">
+                         <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path></svg>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-2">Derick</h3>
+                    <p class="text-gray-400 mb-4">Support & Logistics</p>
+                    <a href="tel:0243041457" class="inline-block bg-darkBg border border-neonBlue text-neonBlue font-bold py-2 px-6 rounded-lg hover:bg-neonBlue hover:text-white transition">
+                        024 304 1457
+                    </a>
+                </div>
+
+                <div class="bg-cardBg border border-white/5 p-8 rounded-2xl shadow-xl hover:-translate-y-2 transition duration-300 group">
+                    <div class="w-16 h-16 rounded-full bg-neonPurple/20 group-hover:bg-neonPurple/40 flex items-center justify-center text-neonPurple mb-6 mx-auto transition">
+                         <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path></svg>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-2">Genevieve</h3>
+                    <p class="text-gray-400 mb-4">Event Partnerships</p>
+                    <a href="tel:0256301563" class="inline-block bg-darkBg border border-neonPurple text-neonPurple font-bold py-2 px-6 rounded-lg hover:bg-neonPurple hover:text-white transition">
+                        025 630 1563
+                    </a>
+                </div>
+            </div>
+            
+            <div class="mt-16 bg-cardBg border border-white/5 rounded-xl p-8 max-w-2xl mx-auto">
+                <h3 class="text-xl font-bold mb-4">Send us a Message</h3>
+                <form class="space-y-4 text-left">
+                    <div>
+                        <input type="text" placeholder="Your Name" class="w-full bg-darkBg border border-gray-600 rounded-lg p-3 text-white focus:outline-none focus:border-neonBlue transition">
+                    </div>
+                    <div>
+                        <input type="email" placeholder="Your Email" class="w-full bg-darkBg border border-gray-600 rounded-lg p-3 text-white focus:outline-none focus:border-neonBlue transition">
+                    </div>
+                    <div>
+                        <textarea placeholder="How can we help?" rows="4" class="w-full bg-darkBg border border-gray-600 rounded-lg p-3 text-white focus:outline-none focus:border-neonBlue transition resize-none"></textarea>
+                    </div>
+                    <button type="button" class="w-full bg-white text-darkBg font-bold py-3 rounded-lg hover:bg-gray-200 transition">SendMessage</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-[#0b1121] py-8 border-t border-white/10 mt-auto">
+        <div class="max-w-7xl mx-auto px-6 text-center">
+            <div class="flex flex-col md:flex-row justify-between items-center text-sm text-gray-500">
+                <p>&copy; 2026 TarkwaTix. All rights reserved.</p>
+                <div class="flex space-x-6 mt-4 md:mt-0">
+                    <a href="#" class="hover:text-white transition">About</a>
+                    <a href="#" class="hover:text-white transition">Terms of Service</a>
+                    <a href="#" class="hover:text-white transition">Privacy Policy</a>
+                    <a href="contact.html" class="text-white transition">Contact</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
