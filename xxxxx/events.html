@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Events in Tarkwa | TarkwaTix</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        darkBg: '#0f172a',
+                        cardBg: '#1e293b',
+                        neonBlue: '#0ea5e9',
+                        neonPurple: '#a855f7',
+                    },
+                    fontFamily: {
+                        sans: ['Outfit', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .event-card {
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        .event-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 10px 30px -5px rgba(168, 85, 247, 0.3), 0 8px 10px -6px rgba(14, 165, 233, 0.3);
+            border-color: rgba(168, 85, 247, 0.3);
+        }
+    </style>
+</head>
+<body class="bg-darkBg text-white font-sans antialiased overflow-x-hidden flex flex-col min-h-screen">
+
+    <!-- Navbar -->
+    <nav class="w-full z-50 px-6 py-6 flex justify-between items-center bg-[#0b1121] border-b border-white/5">
+        <a href="index.html" class="text-2xl font-extrabold tracking-tighter text-white hover:opacity-80 transition cursor-pointer">
+            Tarkwa<span class="text-neonBlue">Tix</span>
+        </a>
+        <div class="hidden md:flex space-x-6 text-sm font-semibold">
+            <a href="events.html" class="text-neonBlue transition cursor-pointer">Events</a>
+            <a href="organize.html" class="hover:text-neonPurple transition cursor-pointer">Organize</a>
+            <a href="contact.html" class="hover:text-white transition cursor-pointer text-gray-400">Contact Us</a>
+        </div>
+    </nav>
+
+    <!-- Events Grid Section -->
+    <section class="py-16 px-6 max-w-7xl mx-auto flex-grow">
+        <div class="flex flex-col md:flex-row justify-between items-end mb-12">
+            <div>
+                <h2 class="text-4xl font-extrabold mb-2">Upcoming <span class="text-neonPurple">Events</span></h2>
+                <p class="text-gray-400">Grab your tickets before they sell out.</p>
+            </div>
+            <div class="mt-6 md:mt-0 flex space-x-3">
+                <select class="bg-cardBg border border-gray-600 rounded-lg px-4 py-2 text-sm text-gray-300 focus:outline-none focus:border-neonPurple">
+                    <option>All Types</option>
+                    <option>House Parties</option>
+                    <option>Campus Bashes</option>
+                    <option>Live Music</option>
+                </select>
+                <select class="bg-cardBg border border-gray-600 rounded-lg px-4 py-2 text-sm text-gray-300 focus:outline-none focus:border-neonBlue">
+                    <option>This Weekend</option>
+                    <option>Next Week</option>
+                    <option>This Month</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <!-- Card 1 -->
+            <div class="event-card bg-cardBg rounded-2xl overflow-hidden shadow-lg group flex flex-col h-full">
+                <div class="w-full relative overflow-hidden">
+                    <img src="assets/media__1773354790490.jpg" alt="House Party" class="w-full h-full object-cover sm:h-auto group-hover:scale-105 transition duration-500">
+                    <div class="absolute top-4 right-4 bg-black/70 backdrop-blur-sm shadow px-3 py-1 rounded-full text-xs font-bold text-neonBlue border border-neonBlue/30">
+                        This Weekend
+                    </div>
+                </div>
+                <div class="p-6 flex flex-col flex-1">
+                    <p class="text-xs uppercase tracking-widest font-semibold text-neonPurple mb-2">House Party</p>
+                    <h3 class="text-xl font-bold mb-3">Ultimate Weekend House Party</h3>
+                    <div class="text-sm text-gray-400 space-y-2 mb-6">
+                        <div class="flex items-center"><svg class="w-4 h-4 mr-2 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg> Friday, 10:00 PM</div>
+                        <div class="flex items-center"><svg class="w-4 h-4 mr-2 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.242-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg> UMaT Area, Tarkwa</div>
+                    </div>
+                    <div class="flex items-center justify-between border-t border-gray-700 pt-4 mt-auto text-white">
+                        <div class="text-2xl font-extrabold">GHS 50</div>
+                        <button onclick="openCheckoutModal('Ultimate Weekend House Party', 50)" class="bg-white/10 hover:bg-neonBlue text-white font-bold py-2 px-5 rounded-lg transition">Buy Ticket</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 2 -->
+            <div class="event-card bg-cardBg rounded-2xl overflow-hidden shadow-lg group flex flex-col h-full">
+                <div class="w-full relative overflow-hidden">
+                    <img src="assets/media__1773354790694.jpg" alt="Campus Gathering" class="w-full h-full object-cover sm:h-auto group-hover:scale-105 transition duration-500">
+                </div>
+                <div class="p-6 flex flex-col flex-1">
+                    <p class="text-xs uppercase tracking-widest font-semibold text-neonPurple mb-2">Campus Event</p>
+                    <h3 class="text-xl font-bold mb-3">Freshers Welcome Bash</h3>
+                    <div class="text-sm text-gray-400 space-y-2 mb-6">
+                        <div class="flex items-center"><svg class="w-4 h-4 mr-2 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg> Saturday, 8:00 PM</div>
+                        <div class="flex items-center"><svg class="w-4 h-4 mr-2 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.242-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg> KT Hall, UMaT</div>
+                    </div>
+                    <div class="flex items-center justify-between border-t border-gray-700 pt-4 mt-auto text-white">
+                        <div class="text-2xl font-extrabold">GHS 30</div>
+                        <button onclick="openCheckoutModal('Freshers Welcome Bash', 30)" class="bg-white/10 hover:bg-neonBlue text-white font-bold py-2 px-5 rounded-lg transition">Buy Ticket</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 3 -->
+            <div class="event-card bg-cardBg rounded-2xl overflow-hidden shadow-lg group flex flex-col h-full">
+                <div class="w-full relative overflow-hidden">
+                    <img src="assets/media__1773354790636.jpg" alt="Local Show" class="w-full h-full object-cover sm:h-auto group-hover:scale-105 transition duration-500">
+                </div>
+                <div class="p-6 flex flex-col flex-1">
+                    <p class="text-xs uppercase tracking-widest font-semibold text-neonPurple mb-2">Live Music</p>
+                    <h3 class="text-xl font-bold mb-3">Tarkwa Night Live Concert</h3>
+                    <div class="text-sm text-gray-400 space-y-2 mb-6">
+                        <div class="flex items-center"><svg class="w-4 h-4 mr-2 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg> Next Friday, 7:00 PM</div>
+                        <div class="flex items-center"><svg class="w-4 h-4 mr-2 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.242-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg> Civic Center</div>
+                    </div>
+                    <div class="flex items-center justify-between border-t border-gray-700 pt-4 mt-auto text-white">
+                        <div class="text-2xl font-extrabold">GHS 100</div>
+                        <button onclick="openCheckoutModal('Tarkwa Night Live Concert', 100)" class="bg-white/10 hover:bg-neonBlue text-white font-bold py-2 px-5 rounded-lg transition">Buy Ticket</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-[#0b1121] py-8 border-t border-white/10 mt-auto">
+        <div class="max-w-7xl mx-auto px-6 text-center">
+            <div class="flex flex-col md:flex-row justify-between items-center text-sm text-gray-500">
+                <p>&copy; 2026 TarkwaTix. All rights reserved.</p>
+                <div class="flex space-x-6 mt-4 md:mt-0">
+                    <a href="#" class="hover:text-white transition">About</a>
+                    <a href="#" class="hover:text-white transition">Terms of Service</a>
+                    <a href="#" class="hover:text-white transition">Privacy Policy</a>
+                    <a href="contact.html" class="hover:text-white transition">Contact</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Buy Ticket Checkout Modal -->
+    <div id="checkoutModal" class="fixed inset-0 z-[100] bg-black/80 backdrop-blur-sm hidden flex items-center justify-center px-4">
+        <div class="bg-cardBg border border-white/10 p-8 rounded-2xl w-full max-w-md relative shadow-2xl transition-all">
+            <!-- Close Button -->
+            <button onclick="closeCheckoutModal()" class="absolute top-4 right-4 text-gray-400 hover:text-white">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+            </button>
+            
+            <h3 class="text-2xl font-bold mb-1">Secure Checkout</h3>
+            <p class="text-neonBlue text-sm font-semibold mb-6" id="checkoutEventName">Event Name</p>
+
+            <!-- Checkout Form Area -->
+            <div id="checkoutFormArea">
+                <div class="bg-darkBg p-4 rounded-xl border border-white/5 mb-6">
+                    <div class="flex justify-between items-center mb-4">
+                        <span class="text-gray-400 text-sm">Ticket Price</span>
+                        <span class="font-bold">GHS <span id="checkoutBasePrice">0</span></span>
+                    </div>
+                    
+                    <div class="flex justify-between items-center border-t border-gray-700 pt-4 mb-4">
+                        <span class="text-gray-400 text-sm">Quantity</span>
+                        <div class="flex items-center space-x-3 bg-cardBg rounded-lg p-1 border border-gray-600">
+                            <button onclick="updateTicketQuantity(-1)" class="w-8 h-8 flex items-center justify-center rounded bg-darkBg text-white hover:bg-gray-700 transition">-</button>
+                            <span id="ticketQuantity" class="font-bold w-4 text-center">1</span>
+                            <button onclick="updateTicketQuantity(1)" class="w-8 h-8 flex items-center justify-center rounded bg-darkBg text-white hover:bg-gray-700 transition">+</button>
+                        </div>
+                    </div>
+
+                    <div class="flex justify-between items-center border-t border-gray-700 pt-4">
+                        <span class="text-gray-300 font-semibold text-lg">Total</span>
+                        <span class="font-extrabold text-2xl text-neonBlue">GHS <span id="checkoutTotal">0</span></span>
+                    </div>
+                </div>
+
+                <div class="mb-6">
+                    <label class="block text-sm text-gray-400 mb-2">MoMo Number</label>
+                    <input type="tel" id="momoNumberInput" placeholder="024 XXX XXXX" class="w-full bg-darkBg border border-gray-600 rounded-xl p-3 text-white focus:outline-none focus:border-neonBlue transition" />
+                </div>
+
+                <button onclick="processTicketPayment()" id="payTicketBtn" class="w-full bg-neonBlue text-white font-bold py-3 rounded-xl hover:bg-blue-500 transition shadow-[0_0_15px_rgba(14,165,233,0.3)]">
+                    Pay via Mobile Money
+                </button>
+            </div>
+
+            <!-- Processing / Success States -->
+            <div id="checkoutProcessingArea" class="hidden flex-col items-center justify-center py-10">
+                <div class="w-12 h-12 border-4 border-darkBg border-t-neonBlue rounded-full animate-spin mb-4"></div>
+                <p class="text-neonBlue font-semibold animate-pulse text-center">Check your phone to authorize the MoMo payment...</p>
+            </div>
+
+            <div id="checkoutSuccessArea" class="hidden flex-col items-center justify-center py-6 text-center">
+                <div class="w-20 h-20 bg-green-500/20 rounded-full flex items-center justify-center mb-4">
+                    <div class="w-14 h-14 bg-green-500 text-white rounded-full flex items-center justify-center shadow-[0_0_20px_rgba(34,197,94,0.5)]">
+                        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
+                    </div>
+                </div>
+                <h3 class="text-2xl font-bold mb-2">Ticket Secured!</h3>
+                <p class="text-gray-400 text-sm mb-6">Your ticket has been downloaded and a copy sent via SMS.</p>
+                <button onclick="closeCheckoutModal()" class="w-full bg-darkBg border border-gray-600 text-white font-bold py-3 rounded-xl hover:bg-gray-700 transition">
+                    View My Tickets
+                </button>
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+        // --- Checkout / Buy Ticket State ---
+        const checkoutModal = document.getElementById('checkoutModal');
+        const checkoutFormArea = document.getElementById('checkoutFormArea');
+        const checkoutProcessingArea = document.getElementById('checkoutProcessingArea');
+        const checkoutSuccessArea = document.getElementById('checkoutSuccessArea');
+        const checkoutEventName = document.getElementById('checkoutEventName');
+        const checkoutBasePrice = document.getElementById('checkoutBasePrice');
+        const checkoutTotal = document.getElementById('checkoutTotal');
+        const ticketQuantityEl = document.getElementById('ticketQuantity');
+        const payTicketBtn = document.getElementById('payTicketBtn');
+        const momoNumberInput = document.getElementById('momoNumberInput');
+
+        let currentTicketPrice = 0;
+        let currentQuantity = 1;
+
+        function openCheckoutModal(eventName, price) {
+            currentTicketPrice = price;
+            currentQuantity = 1;
+            
+            checkoutEventName.innerText = eventName;
+            checkoutBasePrice.innerText = price.toFixed(2);
+            ticketQuantityEl.innerText = currentQuantity;
+            updateTotalDisplay();
+
+            checkoutModal.classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+            resetCheckoutState();
+        }
+
+        function closeCheckoutModal() {
+            checkoutModal.classList.add('hidden');
+            document.body.style.overflow = 'auto';
+        }
+
+        function updateTicketQuantity(change) {
+            let newQuantity = currentQuantity + change;
+            if (newQuantity >= 1 && newQuantity <= 10) {
+                currentQuantity = newQuantity;
+                ticketQuantityEl.innerText = currentQuantity;
+                updateTotalDisplay();
+            }
+        }
+
+        function updateTotalDisplay() {
+            const total = currentTicketPrice * currentQuantity;
+            checkoutTotal.innerText = total.toFixed(2);
+        }
+
+        function processTicketPayment() {
+            if(!momoNumberInput.value.trim()) {
+                momoNumberInput.classList.add('border-red-500');
+                return;
+            }
+            momoNumberInput.classList.remove('border-red-500');
+
+            checkoutFormArea.classList.add('hidden');
+            checkoutProcessingArea.classList.remove('hidden');
+            checkoutProcessingArea.classList.add('flex');
+
+            setTimeout(() => {
+                checkoutProcessingArea.classList.add('hidden');
+                checkoutProcessingArea.classList.remove('flex');
+                
+                checkoutSuccessArea.classList.remove('hidden');
+                checkoutSuccessArea.classList.add('flex');
+            }, 3000);
+        }
+
+        function resetCheckoutState() {
+            checkoutFormArea.classList.remove('hidden');
+            momoNumberInput.value = '';
+            
+            checkoutProcessingArea.classList.add('hidden');
+            checkoutProcessingArea.classList.remove('flex');
+            
+            checkoutSuccessArea.classList.add('hidden');
+            checkoutSuccessArea.classList.remove('flex');
+        }
+
+        checkoutModal.addEventListener('click', (e) => {
+            if (e.target === checkoutModal) {
+                closeCheckoutModal();
+            }
+        });
+    </script>
+</body>
+</html>

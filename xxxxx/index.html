@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TarkwaTix | Discover Local Experiences</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        darkBg: '#0f172a',
+                        cardBg: '#1e293b',
+                        neonBlue: '#0ea5e9',
+                        neonPurple: '#a855f7',
+                    },
+                    fontFamily: {
+                        sans: ['Outfit', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        html { scroll-behavior: smooth; }
+        
+        /* Hero Overlay Gradient */
+        .hero-overlay {
+            background: linear-gradient(to bottom, rgba(15, 23, 42, 0.6) 0%, rgba(15, 23, 42, 1) 100%);
+        }
+
+        /* Pulsing Glow Effect */
+        @keyframes glowPulse {
+            0% { box-shadow: 0 0 5px rgba(14, 165, 233, 0.2); }
+            50% { box-shadow: 0 0 20px rgba(14, 165, 233, 0.6); }
+            100% { box-shadow: 0 0 5px rgba(14, 165, 233, 0.2); }
+        }
+        .btn-glow {
+            animation: glowPulse 2s infinite;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #0f172a; }
+        ::-webkit-scrollbar-thumb { background: #334155; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #475569; }
+    </style>
+</head>
+<body class="bg-darkBg text-white font-sans antialiased overflow-x-hidden flex flex-col min-h-screen">
+
+    <!-- Navbar -->
+    <nav class="absolute top-0 left-0 w-full z-50 px-6 py-4 flex justify-between items-center bg-transparent">
+        <a href="index.html" class="text-2xl font-extrabold tracking-tighter text-white hover:opacity-80 transition cursor-pointer">
+            Tarkwa<span class="text-neonBlue">Tix</span>
+        </a>
+        <div class="hidden md:flex space-x-6 text-sm font-semibold">
+            <a href="events.html" class="hover:text-neonBlue transition cursor-pointer">Events</a>
+            <a href="organize.html" class="hover:text-neonPurple transition cursor-pointer">Organize</a>
+            <a href="contact.html" class="hover:text-white transition cursor-pointer text-gray-400">Contact Us</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="relative w-full flex-grow flex text-center items-center justify-center bg-cover bg-center" style="background-image: url('assets/hero_bg_1773351326835.png');">
+        <div class="absolute inset-0 hero-overlay"></div>
+        <div class="relative z-10 max-w-4xl px-6 mt-16">
+            <span class="inline-block py-1 px-4 rounded-full bg-slate-800/50 border border-slate-700 text-neonPurple text-xs font-bold tracking-widest uppercase mb-6 backdrop-blur-md">
+                The Vibe Center of Tarkwa
+            </span>
+            <h1 class="text-5xl md:text-7xl font-extrabold mb-6 leading-tight">
+                Unforgettable <span class="text-neonBlue">Local</span> Experiences.
+            </h1>
+            <p class="text-lg md:text-xl text-gray-300 mb-10 max-w-2xl mx-auto">
+                Discover the best house parties, campus gatherings, and local shows. Skip the lines, get your tickets instantly.
+            </p>
+            <div class="flex flex-col sm:flex-row justify-center items-center space-y-4 sm:space-y-0 sm:space-x-6">
+                <a href="events.html" class="px-8 py-4 bg-neonBlue text-white font-bold rounded-full btn-glow hover:bg-sky-400 transition cursor-pointer">
+                    Discover Events
+                </a>
+                <a href="organize.html" class="px-8 py-4 bg-transparent border border-gray-400 hover:border-white hover:text-white text-gray-300 font-bold rounded-full transition cursor-pointer">
+                    Create an Event
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-[#0b1121] py-8 border-t border-white/10 mt-auto">
+        <div class="max-w-7xl mx-auto px-6 text-center">
+            <div class="flex flex-col md:flex-row justify-between items-center text-sm text-gray-500">
+                <p>&copy; 2026 TarkwaTix. All rights reserved.</p>
+                <div class="flex space-x-6 mt-4 md:mt-0">
+                    <a href="#" class="hover:text-white transition">About</a>
+                    <a href="#" class="hover:text-white transition">Terms of Service</a>
+                    <a href="#" class="hover:text-white transition">Privacy Policy</a>
+                    <a href="contact.html" class="hover:text-white transition">Contact</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
