@@ -142,8 +142,9 @@
 
             <!-- Result State -->
             <div id="aiResultState" class="hidden flex-col">
-                <div class="w-full h-64 bg-black rounded-xl overflow-hidden mb-4 border border-white/5">
-                    <img id="generatedImage" src="assets/house_party_1773351367423.png" alt="Generated Flyer" class="w-full h-full object-contain">
+                <div class="w-full h-64 bg-black rounded-xl border border-white/5 relative overflow-hidden mb-4 flex items-center justify-center">
+                    <img id="generatedImage" src="" alt="Generated Flyer" class="w-full h-full object-contain hidden">
+                    <p id="aiErrorMessage" class="text-red-500 text-sm hidden px-4 text-center">Failed to generate image. Please try again.</p>
                 </div>
                 <div class="flex space-x-4">
                     <button onclick="resetFlyerGenerator()" class="flex-1 bg-darkBg text-gray-300 font-bold py-3 rounded-xl border border-gray-600 hover:text-white hover:border-white transition">Regenerate</button>
@@ -264,8 +265,9 @@
             resetFlyerGenerator();
         }
 
-        function generateFlyer() {
-            if(!promptInput.value.trim()) {
+        async function generateFlyer() {
+            const promptText = promptInput.value.trim();
+            if(!promptText) {
                 promptInput.classList.add('border-red-500');
                 return;
             }
@@ -275,13 +277,47 @@
             loadingState.classList.remove('hidden');
             loadingState.classList.add('flex');
 
-            setTimeout(() => {
+            const generatedImageEl = document.getElementById('generatedImage');
+            const aiErrorMessageEl = document.getElementById('aiErrorMessage');
+            
+            generatedImageEl.classList.add('hidden');
+            aiErrorMessageEl.classList.add('hidden');
+
+            try {
+                // Using Pollinations.ai for free, unsanitized image generation based on prompt
+                // We add some keywords to ensure it looks like a neon event flyer
+                const enhancedPrompt = encodeURIComponent(`Neon event flyer, party poster, aesthetic typography, ${promptText}`);
+                const seed = Math.floor(Math.random() * 1000000); // Random seed for unique results
+                const imageUrl = `https://image.pollinations.ai/prompt/${enhancedPrompt}?width=800&height=800&nologo=true&seed=${seed}`;
+
+                // Pre-load the image to ensure it's ready before showing the result state
+                const img = new Image();
+                img.onload = () => {
+                    generatedImageEl.src = imageUrl;
+                    
+                    loadingState.classList.add('hidden');
+                    loadingState.classList.remove('flex');
+                    
+                    resultState.classList.remove('hidden');
+                    resultState.classList.add('flex');
+                    
+                    generatedImageEl.classList.remove('hidden');
+                };
+                img.onerror = () => {
+                    throw new Error("Failed to load image");
+                };
+                img.src = imageUrl;
+
+            } catch (error) {
+                console.error("Generation error:", error);
                 loadingState.classList.add('hidden');
                 loadingState.classList.remove('flex');
                 
                 resultState.classList.remove('hidden');
                 resultState.classList.add('flex');
-            }, 3000);
+                
+                aiErrorMessageEl.classList.remove('hidden');
+            }
         }
 
         function resetFlyerGenerator() {
@@ -293,6 +329,10 @@
             
             resultState.classList.add('hidden');
             resultState.classList.remove('flex');
+            
+            const generatedImageEl = document.getElementById('generatedImage');
+            generatedImageEl.src = '';
+            generatedImageEl.classList.add('hidden');
         }
 
         flyerModal.addEventListener('click', (e) => {
